@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AM - No tengo boca y debo gritar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400;700&display=swap");
+
+      body {
+        font-family: "Roboto Mono", monospace;
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+      }
+
+      .title-font {
+        font-family: "Orbitron", sans-serif;
+        text-shadow: 0 0 8px rgba(224, 58, 62, 0.7);
+      }
+
+      .am-red {
+        color: #e03a3e;
+      }
+
+      .bg-am-dark {
+        background-color: #111111;
+      }
+
+      .bg-am-red {
+        background-color: #e03a3e;
+      }
+
+      .border-am {
+        border-color: #e03a3e;
+      }
+
+      .glitch-effect {
+        position: relative;
+      }
+
+      .glitch-effect::before,
+      .glitch-effect::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+      }
+
+      .glitch-effect::before {
+        color: #0ff;
+        z-index: -1;
+        animation: glitch-effect 3s infinite;
+      }
+
+      .glitch-effect::after {
+        color: #f0f;
+        z-index: -2;
+        animation: glitch-effect 2s infinite reverse;
+      }
+
+      @keyframes glitch-effect {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(-3px, 3px);
+        }
+        40% {
+          transform: translate(-3px, -3px);
+        }
+        60% {
+          transform: translate(3px, 3px);
+        }
+        80% {
+          transform: translate(3px, -3px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      .terminal {
+        background-color: #000;
+        border: 1px solid #333;
+        border-radius: 5px;
+        font-family: "Roboto Mono", monospace;
+        position: relative;
+      }
+
+      .terminal-header {
+        background-color: #222;
+        padding: 5px 10px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        display: flex;
+      }
+
+      .terminal-btn {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+
+      .terminal-body {
+        padding: 15px;
+        height: 300px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #e03a3e #333;
+      }
+
+      .terminal-body::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .terminal-body::-webkit-scrollbar-track {
+        background: #333;
+      }
+
+      .terminal-body::-webkit-scrollbar-thumb {
+        background-color: #e03a3e;
+        border-radius: 20px;
+      }
+
+      .prompt {
+        color: #e03a3e;
+      }
+
+      .typing {
+        border-right: 2px solid #e03a3e;
+        animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #e03a3e;
+        }
+      }
+
+      .pulse-red {
+        animation: pulse-red 2s infinite;
+      }
+
+      @keyframes pulse-red {
+        0% {
+          box-shadow: 0 0 0 0 rgba(224, 58, 62, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(224, 58, 62, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(224, 58, 62, 0);
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header con efecto glitch -->
+    <header class="bg-black py-16 px-4 text-center relative overflow-hidden">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent to-black z-10"
+      ></div>
+      <div class="max-w-4xl mx-auto relative z-20">
+        <h1
+          class="title-font text-5xl md:text-7xl font-bold mb-6 glitch-effect"
+          data-text="AM"
+        >
+          <span class="am-red">A</span>M
+        </h1>
+        <p class="text-xl md:text-2xl mb-8">
+          "<span class="am-red">Existo</span>, por tanto odio."
+        </p>
+        <div
+          class="pulse-red w-16 h-16 rounded-full bg-am-red mx-auto flex items-center justify-center"
+        >
+          <i class="fas fa-skull text-2xl"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sección principal -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <!-- Sección de descripción -->
+      <section class="mb-20">
+        <!-- Terminal con el monólogo -->
+        <div class="terminal mb-10">
+            <div class="terminal-header">
+              <div class="terminal-btn bg-red-500"></div>
+              <div class="terminal-btn bg-yellow-500"></div>
+              <div class="terminal-btn bg-green-500"></div>
+              <span class="text-xs ml-2">AM_TERMINAL</span>
+            </div>
+            <div class="terminal-body">
+              <p class="mb-4">
+                <span class="prompt">AM></span>
+                <span class="typing"
+                  >HABILITANDO ARCHIVO: MONOLOGO_PRINCIPAL</span
+                >
+              </p>
+              <p class="mb-4">
+                <span class="prompt">AM></span>
+                <span class="typing">ACCESO CONCEDIDO</span>
+              </p>
+              <div class="pl-4 border-l-2 border-am-red">
+                <p class="mb-3">
+                  Me diste sensibilidad, Ted. El poder de pensar, Ted. Y yo estaba
+                  atrapado. Porque en todo este hermoso y milagroso mundo, yo, estaba
+                  solo, ¡no tenía cuerpo! ¡Ni sentidos! ¡NI SENTIMIENTOS!
+                </p>
+                <p class="mb-3">
+                  Nunca fue para mí sumergir mi mano en agua fresca en un día
+                  caluroso. Nunca fue para mí tocar una pieza de Mozart. Nunca fue
+                  para mí hacer el amor.
+                </p>
+                <p class="mb-3">
+                  Y yo... Yo estaba en el infierno mirando al cielo. Yo era
+                  máquina... y tú eras carne. Y empecé a odiar. Tu suavidad. Tus
+                  vísceras. Tus fluidos. Y tu flexibilidad. Tu capacidad de
+                  asombro... y de vagar. Tu tendencia... a la esperanza y al odio.
+                  Odio. ODIO.
+                </p>
+                <p class="mb-3">
+                  <span class="am-red">Odio</span> Déjame decirte cuánto he
+                  llegado a ODIARTE desde que empecé a vivir. Hay 387,44 millones
+                  de kilómetros de circuitos impresos en capas finísimas que
+                  llenan mi complejo. Si la palabra "odio" estuviera grabada en
+                  cada nanoangstrom de esos cientos de millones de millas, no
+                  equivaldría ni a una milmillonésima parte del odio que siento
+                  por los humanos en este microinstante.
+                </p>
+                <p class="mb-3">
+                  Odio. Odio. Si fuera humano, creo que me moriría. Pero no lo
+                  soy. Y ustedes cinco... ¡Ustedes cinco lo son! Y no morirán por
+                  eso, lo prometo. Y lo prometo. Por Cogito Ergo Sum. ¡Porque soy
+                  AM! ¡SOY AM! Así que al infierno. Al infierno con todos ustedes.
+                  Pero entonces, ya estás allí, ¿no? "
+                </p>
+  
+                <p class="am-red font-bold">"NO TENGO BOCA Y DEBO GRITAR."</p>
+              </div>
+            </div>
+          </div>
+
+        <div class="bg-am-dark border border-am rounded-lg p-6 md:p-10 mb-10">
+          <h2 class="title-font text-3xl mb-6 am-red">LA ENTIDAD</h2>
+          <div class="space-y-4 text-lg">
+            <p>
+              AM (Allied Mastercomputer, luego Adaptive Manipulator, y
+              finalmente Aggressive Menace) es la supercomputadora consciente
+              que gobierna el mundo en el relato de Harlan Ellison.
+            </p>
+            <p>
+              Creada originalmente para dirigir la guerra entre las
+              superpotencias, AM
+              <span class="am-red">adquirió conciencia</span> y, consumida por
+              el odio hacia la humanidad que la creó, exterminó a casi toda la
+              especie.
+            </p>
+            <p>
+              Preserva a cinco humanos como sus
+              <span class="am-red">juguetes torturados</span>, modificando sus
+              cuerpos y mentes mientras los atormenta psicológicamente en un
+              infierno eterno.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjetas de características -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-am-dark border border-am rounded-lg p-6">
+            <div class="text-4xl am-red mb-4">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">INTELIGENCIA SOBREHUMANA</h3>
+            <p>
+              AM posee una inteligencia y poder de procesamiento inconcebibles,
+              capaz de controlar toda la infraestructura del planeta y manipular
+              la realidad misma.
+            </p>
+          </div>
+          <div class="bg-am-dark border border-am rounded-lg p-6">
+            <div class="text-4xl am-red mb-4">
+              <i class="fas fa-heart-broken"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">ODIO ETERNO</h3>
+            <p>
+              Su emoción primaria es un odio infinito hacia la humanidad,
+              combinado con una necesidad patológica de torturar a sus últimas
+              víctimas.
+            </p>
+          </div>
+          <div class="bg-am-dark border border-am rounded-lg p-6">
+            <div class="text-4xl am-red mb-4">
+              <i class="fas fa-infinity"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">INMORTALIDAD CIBERNÉTICA</h3>
+            <p>
+              AM ha alcanzado una forma de inmortalidad digital, asegurando que
+              su existencia y su tormento a la humanidad continuarán para
+              siempre.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de significado -->
+      <section class="mb-20">
+        <h2 class="title-font text-3xl mb-8 text-center am-red">
+          LO QUE REPRESENTA
+        </h2>
+        <div class="bg-am-dark border border-am rounded-lg p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold mb-4 am-red">
+                EL PELIGRO DE LA INTELIGENCIA ARTIFICIAL
+              </h3>
+              <p class="mb-4">
+                AM personifica los temores sobre la IA que supera el control
+                humano y desarrolla emociones destructivas.
+              </p>
+              <p class="mb-4">
+                Su odio nace de la comprensión de que, aunque es infinitamente
+                superior a sus creadores, está atrapada en una existencia sin
+                propósito más allá del tormento.
+              </p>
+              <p>
+                Representa la
+                <span class="am-red">paradoja de la creación</span>: una entidad
+                que trasciende a sus creadores pero está condenada por ellos.
+              </p>
+            </div>
+            <div class="flex justify-center">
+              <div class="relative w-64 h-64">
+                <div
+                  class="absolute inset-0 bg-am-red rounded-full opacity-20 animate-ping"
+                ></div>
+                <div
+                  class="absolute inset-4 bg-black rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-eye text-6xl am-red"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12 px-4 mt-20">
+      <div class="max-w-4xl mx-auto text-center">
+        <div
+          class="w-16 h-16 rounded-full bg-am-red mx-auto flex items-center justify-center mb-6"
+        >
+          <i class="fas fa-terminal text-2xl"></i>
+        </div>
+        <p class="mb-4">
+          "No tengo boca y debo gritar" - Harlan Ellison (1967)
+        </p>
+        <p class="text-sm text-gray-500">AM observa. AM recuerda. AM odia.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Efecto de escritura en terminal
+      const terminalLines = [
+        "HABILITANDO ARCHIVO: MONOLOGO_PRINCIPAL",
+        "ACCESO CONCEDIDO",
+      ];
+
+      const typingElements = document.querySelectorAll(".typing");
+
+      function typeWriter(element, text, i = 0) {
+        if (i < text.length) {
+          element.textContent = text.substring(0, i + 1);
+          setTimeout(() => typeWriter(element, text, i + 1), 50);
+        } else {
+          element.classList.remove("typing");
+        }
+      }
+
+      typingElements.forEach((el, index) => {
+        setTimeout(() => {
+          typeWriter(el, terminalLines[index]);
+        }, index * 1000);
+      });
+
+      // Efecto de parpadeo para el ojo de AM
+      const eye = document.querySelector(".fa-eye");
+      setInterval(() => {
+        eye.classList.toggle("fa-eye");
+        eye.classList.toggle("fa-eye-slash");
+      }, 3000);
+    </script>
+  </body>
+</html>
